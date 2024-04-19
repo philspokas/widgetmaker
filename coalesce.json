@@ -1,0 +1,16 @@
+{
+  "webProject": {
+    "projectFile": "./widgetmaker.Web/widgetmaker.Web.csproj"
+  },
+  "dataProject": {
+    "projectFile": "./widgetmaker.Data/widgetmaker.Data.csproj"
+  },
+
+  "rootGenerator": "Vue",
+
+  "generatorConfig": {
+    "Scripts": {
+      "targetDirectory": "../src"
+    }
+  }
+}
