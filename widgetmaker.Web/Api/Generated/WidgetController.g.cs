@@ -1,5 +1,4 @@
 
-using widgetmaker.Web.Models;
 using IntelliTect.Coalesce;
 using IntelliTect.Coalesce.Api;
 using IntelliTect.Coalesce.Api.Behaviors;
@@ -18,6 +17,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using widgetmaker.Web.Models;
 
 namespace widgetmaker.Web.Api
 {
