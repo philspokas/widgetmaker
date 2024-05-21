@@ -22,17 +22,24 @@ jobs:
           dotnet-version: '8.x'
           include-prerelease: true
 
+      - name: npm build
+        run: |
+          cd ./widgetmaker.web
+          npm ci
+          npm run build
+
       - name: Build with dotnet
         run: dotnet build --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
-
+        run: dotnet publish ${{github.workspace}}/widgetmaker.web/widgetmaker.web.csproj -c Release -o ${{ github.workspace }}/widgetmaker.published/
+ 
       - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
+          path: ${{github.workspace}}/widgetmaker.published/
+          if-no-files-found: error
 
   deploy:
     runs-on: ubuntu-latest
