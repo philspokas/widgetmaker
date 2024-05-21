@@ -6,6 +6,8 @@ import { createVuetify } from "vuetify";
 import $metadata from "@/metadata.g";
 import router from "@/router";
 
+let global: any;
+
 // Stub ResizeObserver, as vuetify's VApp relies on it.
 global.ResizeObserver ??= class {
   observe() {}
