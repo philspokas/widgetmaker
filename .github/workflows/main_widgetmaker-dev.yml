@@ -25,11 +25,22 @@ jobs:
       - name: Build with dotnet
         run: dotnet build --configuration Release
 
-      - name: Setup and Build TypeScript
-        uses: ./.github/actions/setup-npm
+      - name: Set up node with caching
+        uses: actions/setup-node@v4
         with:
           node-version: 20
-          working-directory: "./widgetmaker.Web"
+          cache: 'npm'
+          cache-dependency-path: ./widgetmaker.Web/package-lock.json
+
+      - name: Restore and Install npm Packages
+        run: npm ci
+        working-directory: "./widgetmaker.Web"
+        shell: pwsh
+
+      - name: Run npm Build
+        run: npm run build
+        working-directory: "./widgetmaker.Web"
+        shell: pwsh
 
       - name: dotnet publish
         run: dotnet publish ${{github.workspace}}/widgetmaker.Web/widgetmaker.Web.csproj -c Release -o ${{ github.workspace }}/widgetmaker.Published/
