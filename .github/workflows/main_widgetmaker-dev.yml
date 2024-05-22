@@ -22,14 +22,14 @@ jobs:
           dotnet-version: "8.x"
           include-prerelease: true
 
-      - name: npm build
-        run: |
-          cd ./widgetmaker.Web
-          npm i
-          npm run build
-
       - name: Build with dotnet
         run: dotnet build --configuration Release
+
+      - name: Setup and Build TypeScript
+        uses: ./.github/actions/setup-npm
+        with:
+          node-version: 20
+          working-directory: "./widgetmaker.Web"
 
       - name: dotnet publish
         run: dotnet publish ${{github.workspace}}/widgetmaker.Web/widgetmaker.Web.csproj -c Release -o ${{ github.workspace }}/widgetmaker.Published/
