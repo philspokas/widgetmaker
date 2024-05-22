@@ -33,7 +33,9 @@ jobs:
           cache-dependency-path: ./widgetmaker.Web/package-lock.json
 
       - name: Restore and Install npm Packages
-        run: npm ci
+        run: |
+          rm package-lock.json
+          npm i
         working-directory: "./widgetmaker.Web"
         shell: pwsh
 
