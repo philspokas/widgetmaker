@@ -14,7 +14,7 @@
         <v-list-item
           to="/widget"
           prepend-icon="fas fa-palette"
-          title="Custom Page Example"
+          title="Widgets"
         />
         <v-list-item
           to="/admin"
