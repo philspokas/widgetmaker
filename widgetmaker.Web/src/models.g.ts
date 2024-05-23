@@ -8,6 +8,31 @@ export enum WidgetCategory {
 }
 
 
+export interface Inventory extends Model<typeof metadata.Inventory> {
+  inventoryId: number | null
+  widgetId: number | null
+  count: number | null
+  createdOn: Date | null
+}
+export class Inventory {
+  
+  /** Mutates the input object and its descendents into a valid Inventory implementation. */
+  static convert(data?: Partial<Inventory>): Inventory {
+    return convertToModel(data || {}, metadata.Inventory) 
+  }
+  
+  /** Maps the input object and its descendents to a new, valid Inventory implementation. */
+  static map(data?: Partial<Inventory>): Inventory {
+    return mapToModel(data || {}, metadata.Inventory) 
+  }
+  
+  /** Instantiate a new Inventory, optionally basing it on the given data. */
+  constructor(data?: Partial<Inventory> | {[k: string]: any}) {
+    Object.assign(this, Inventory.map(data || {}));
+  }
+}
+
+
 export interface Widget extends Model<typeof metadata.Widget> {
   widgetId: number | null
   name: string | null

@@ -74,15 +74,15 @@ if (app.Environment.IsDevelopment())
     // TODO: Dummy authentication for initial development.
     // Replace this with ASP.NET Core Identity, Windows Authentication, or some other scheme.
     // This exists only because Coalesce restricts all generated pages and API to only logged in users by default.
-    // app.Use(async (context, next) =>
-    // {
-    //     Claim[] claims = [new Claim(ClaimTypes.Name, "developmentuser")];
+    app.Use(async (context, next) =>
+    {
+        Claim[] claims = [new Claim(ClaimTypes.Name, "developmentuser")];
 
-    //     var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-    //     await context.SignInAsync(context.User = new ClaimsPrincipal(identity));
+        var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+        await context.SignInAsync(context.User = new ClaimsPrincipal(identity));
 
-    //     await next.Invoke();
-    // });
+        await next.Invoke();
+    });
     // End Dummy Authentication.
 }
 

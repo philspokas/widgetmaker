@@ -7,6 +7,7 @@ namespace widgetmaker.Data;
 public class AppDbContext : DbContext
 {
     public DbSet<Widget> Widgets => Set<Widget>();
+    public DbSet<Inventory> Inventories => Set<Inventory>();
 
     public AppDbContext() { }
 

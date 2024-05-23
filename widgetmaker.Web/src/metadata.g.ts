@@ -29,6 +29,53 @@ export const WidgetCategory = domain.enums.WidgetCategory = {
   },
   ]),
 }
+export const Inventory = domain.types.Inventory = {
+  name: "Inventory",
+  displayName: "Inventory",
+  get displayProp() { return this.props.inventoryId }, 
+  type: "model",
+  controllerRoute: "Inventory",
+  get keyProp() { return this.props.inventoryId }, 
+  behaviorFlags: 7 as BehaviorFlags,
+  props: {
+    inventoryId: {
+      name: "inventoryId",
+      displayName: "Inventory Id",
+      type: "number",
+      role: "primaryKey",
+      hidden: 3 as HiddenAreas,
+    },
+    widgetId: {
+      name: "widgetId",
+      displayName: "Widget Id",
+      type: "number",
+      role: "value",
+      rules: {
+        required: val => val != null || "Widget Id is required.",
+      }
+    },
+    count: {
+      name: "count",
+      displayName: "Count",
+      type: "number",
+      role: "value",
+      rules: {
+        required: val => val != null || "Count is required.",
+      }
+    },
+    createdOn: {
+      name: "createdOn",
+      displayName: "Created On",
+      type: "date",
+      dateKind: "datetime",
+      role: "value",
+    },
+  },
+  methods: {
+  },
+  dataSources: {
+  },
+}
 export const Widget = domain.types.Widget = {
   name: "Widget",
   displayName: "Widget",
@@ -83,6 +130,7 @@ interface AppDomain extends Domain {
     WidgetCategory: typeof WidgetCategory
   }
   types: {
+    Inventory: typeof Inventory
     Widget: typeof Widget
   }
   services: {

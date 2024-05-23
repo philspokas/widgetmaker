@@ -3,6 +3,28 @@ import * as $models from './models.g'
 import * as $apiClients from './api-clients.g'
 import { ViewModel, ListViewModel, ServiceViewModel, DeepPartial, defineProps } from 'coalesce-vue/lib/viewmodel'
 
+export interface InventoryViewModel extends $models.Inventory {
+  inventoryId: number | null;
+  widgetId: number | null;
+  count: number | null;
+  createdOn: Date | null;
+}
+export class InventoryViewModel extends ViewModel<$models.Inventory, $apiClients.InventoryApiClient, number> implements $models.Inventory  {
+  
+  constructor(initialData?: DeepPartial<$models.Inventory> | null) {
+    super($metadata.Inventory, new $apiClients.InventoryApiClient(), initialData)
+  }
+}
+defineProps(InventoryViewModel, $metadata.Inventory)
+
+export class InventoryListViewModel extends ListViewModel<$models.Inventory, $apiClients.InventoryApiClient, InventoryViewModel> {
+  
+  constructor() {
+    super($metadata.Inventory, new $apiClients.InventoryApiClient())
+  }
+}
+
+
 export interface WidgetViewModel extends $models.Widget {
   widgetId: number | null;
   name: string | null;
@@ -26,9 +48,11 @@ export class WidgetListViewModel extends ListViewModel<$models.Widget, $apiClien
 
 
 const viewModelTypeLookup = ViewModel.typeLookup = {
+  Inventory: InventoryViewModel,
   Widget: WidgetViewModel,
 }
 const listViewModelTypeLookup = ListViewModel.typeLookup = {
+  Inventory: InventoryListViewModel,
   Widget: WidgetListViewModel,
 }
 const serviceViewModelTypeLookup = ServiceViewModel.typeLookup = {
