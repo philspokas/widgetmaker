@@ -20,11 +20,11 @@ jobs:
           dotnet-version: "8.x"
           include-prerelease: true
 
-      - name: Run .NET Tests
-        run: dotnet test
-
       - name: Build with dotnet
         run: dotnet build --configuration Release
+
+      - name: Run .NET Tests
+        run: dotnet test
 
       # for now, we're just building to check it, not to deploy
       # - name: dotnet publish
