@@ -49,10 +49,24 @@ export const Inventory = domain.types.Inventory = {
       name: "widgetId",
       displayName: "Widget Id",
       type: "number",
-      role: "value",
+      role: "foreignKey",
+      get principalKey() { return (domain.types.Widget as ModelType).props.widgetId as PrimaryKeyProperty },
+      get principalType() { return (domain.types.Widget as ModelType) },
+      get navigationProp() { return (domain.types.Inventory as ModelType).props.widget as ModelReferenceNavigationProperty },
+      hidden: 3 as HiddenAreas,
       rules: {
-        required: val => val != null || "Widget Id is required.",
+        required: val => val != null || "Widget is required.",
       }
+    },
+    widget: {
+      name: "widget",
+      displayName: "Widget",
+      type: "model",
+      get typeDef() { return (domain.types.Widget as ModelType) },
+      role: "referenceNavigation",
+      get foreignKey() { return (domain.types.Inventory as ModelType).props.widgetId as ForeignKeyProperty },
+      get principalKey() { return (domain.types.Widget as ModelType).props.widgetId as PrimaryKeyProperty },
+      dontSerialize: true,
     },
     count: {
       name: "count",

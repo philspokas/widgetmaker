@@ -14,6 +14,7 @@ namespace widgetmaker.Web.Models
 
         private int? _InventoryId;
         private int? _WidgetId;
+        private widgetmaker.Web.Models.WidgetDtoGen _Widget;
         private int? _Count;
         private System.DateTimeOffset? _CreatedOn;
 
@@ -26,6 +27,11 @@ namespace widgetmaker.Web.Models
         {
             get => _WidgetId;
             set { _WidgetId = value; Changed(nameof(WidgetId)); }
+        }
+        public widgetmaker.Web.Models.WidgetDtoGen Widget
+        {
+            get => _Widget;
+            set { _Widget = value; Changed(nameof(Widget)); }
         }
         public int? Count
         {
@@ -50,6 +56,9 @@ namespace widgetmaker.Web.Models
             this.WidgetId = obj.WidgetId;
             this.Count = obj.Count;
             this.CreatedOn = obj.CreatedOn;
+            if (tree == null || tree[nameof(this.Widget)] != null)
+                this.Widget = obj.Widget.MapToDto<widgetmaker.Data.Models.Widget, WidgetDtoGen>(context, tree?[nameof(this.Widget)]);
+
         }
 
         /// <summary>

@@ -6,6 +6,7 @@ import { ViewModel, ListViewModel, ServiceViewModel, DeepPartial, defineProps } 
 export interface InventoryViewModel extends $models.Inventory {
   inventoryId: number | null;
   widgetId: number | null;
+  widget: WidgetViewModel | null;
   count: number | null;
   createdOn: Date | null;
 }

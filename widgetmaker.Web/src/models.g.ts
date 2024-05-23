@@ -11,6 +11,7 @@ export enum WidgetCategory {
 export interface Inventory extends Model<typeof metadata.Inventory> {
   inventoryId: number | null
   widgetId: number | null
+  widget: Widget | null
   count: number | null
   createdOn: Date | null
 }
