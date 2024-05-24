@@ -57,6 +57,7 @@ const form = useForm();
 // The properties on the generated ViewModels are already reactive.
 // ViewModels and ListViewModels don't need to be wrapped in ref/reactive.
 const item = new WidgetViewModel();
+item.inventedOn = new Date();
 item.$useAutoSave({
   wait: 500,
   debounce: { maxWait: 3000 },
