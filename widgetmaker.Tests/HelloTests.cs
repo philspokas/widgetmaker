@@ -6,7 +6,7 @@ public class HelloTests
     public void HelloWorld_isHello()
     {
         string expected = "Hello World";
-        string actual = "Hello World";
+        string actual = "break the test";
         Assert.Equal(expected, actual);
     }
 
