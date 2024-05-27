@@ -11,7 +11,12 @@
             Use the <a href="/widget">Widgets</a> page to define the types of Widgets we can make
           </p>
           <p>Use <a href="/admin/Widget">Manage Widgets</a> to manage widgets we can make </p>
-          <p>Let's make some widgets ...</p>
+          <v-form ref="form">
+            lets make some widgets
+            <h2 class="py-2">
+              Make Widgets <c-display :model="widgetMaker" for="widgetId" />
+            </h2>
+          </v-form>
         </v-card-text>
       </v-card>
     </v-container>
