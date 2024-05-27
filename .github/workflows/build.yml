@@ -18,21 +18,28 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: Run .NET Tests
-        run: dotnet test
+        run: dotnet test --logger trx
 
-      - name: Test Summary
-        uses: test-summary/action@v2
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
         with:
-          paths: "test/**/*.trx"
-          output: test-summary.md
-        if: always()      
+          files: |
+            TestResults/**/*.trx
+                    
+      # - name: Test Summary
+      #   uses: test-summary/action@v2
+      #   with:
+      #     paths: "test/**/*.trx"
+      #     output: test-summary.md
+      #   if: always()      
 
-      - name: Upload test summary
-        uses: actions/upload-artifact@v3
-        with:
-          name: test-summary
-          path: test-summary.md
-        if: always()        
+      # - name: Upload test summary
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: test-summary
+      #     path: test-summary.md
+      #   if: always()        
 
       # for now, we're just building to check it, not to deploy
       # - name: dotnet publish
