@@ -4,6 +4,8 @@
 name: Build and deploy ASP.Net Core app to Azure Web App - widgetmaker-dev
 
 on:
+  release:
+    types: [published]
   push:
     branches:
       - main
@@ -91,7 +93,7 @@ jobs:
             echo "### Test request was not successful" >> $GITHUB_STEP_SUMMARY
             return 1; 
           }
-          if ($result.list.count > 0) {
+          if ($result.list.count > 5) {
             echo "### $($result.list.count) widgets in database" >> $GITHUB_STEP_SUMMARY
           }
           else {
