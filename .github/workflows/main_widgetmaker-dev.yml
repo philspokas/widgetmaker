@@ -93,7 +93,6 @@ jobs:
             "### Test request was not successful" >> results.md  
             exit 1; 
           }
-          "### $($result.list.count) widgets in database" >> results.md 
           if ($result.list.count -ge 0) {
             "### $($result.list.count) widgets in database" >> results.md 
           }
