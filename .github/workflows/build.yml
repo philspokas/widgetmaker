@@ -49,27 +49,4 @@ jobs:
         with:
           files: |
             **/TestResults/*.trx
-                    
-      # - name: Test Summary
-      #   uses: test-summary/action@v2
-      #   with:
-      #     paths: "test/**/*.trx"
-      #     output: test-summary.md
-      #   if: always()      
 
-      # - name: Upload test summary
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: test-summary
-      #     path: test-summary.md
-      #   if: always()        
-
-      # for now, we're just building to check it, not to deploy
-      # - name: dotnet publish
-      #   run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/app
-
-      # - name: Upload artifact for deployment job
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: .net-app
-      #     path: ${{env.DOTNET_ROOT}}/app

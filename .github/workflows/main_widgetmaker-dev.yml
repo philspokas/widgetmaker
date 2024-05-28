@@ -29,7 +29,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          cache: "npm"
           cache-dependency-path: ./widgetmaker.Web/package-lock.json
 
       - name: Restore and Install npm Packages
@@ -83,3 +83,16 @@ jobs:
           app-name: "widgetmaker-dev"
           slot-name: "Production"
           package: .
+
+      - name: Simple integration test
+        run: |
+          $result = Invoke-RestMethod -uri "https://widgetmaker-dev.azurewebsites.net/api/widget/list"
+          if (-not $result.wasSuccessful ) {
+            echo "### Test request was not successful" >> $GITHUB_STEP_SUMMARY
+            return 1; 
+          }
+          if (-not $result.list.count > 0) {
+            echo "### Not enough widgets in database" >> $GITHUB_STEP_SUMMARY
+            return 1;
+          }
+        shell: pwsh
