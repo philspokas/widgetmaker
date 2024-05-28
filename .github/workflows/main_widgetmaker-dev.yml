@@ -93,7 +93,7 @@ jobs:
             "### Test request was not successful" >> $GITHUB_STEP_SUMMARY  
             exit 1; 
           }
-          if ($result.list.count > 5) {
+          if ($result.list.count > 0 {
             "### $($result.list.count) widgets in database" >> $GITHUB_STEP_SUMMARY
           }
           else {

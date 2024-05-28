@@ -11,5 +11,9 @@ jobs:
         run: |
             $env:GITHUB_STEP_SUMMARY = "### message 1"
             "### message 2" >> $GITHUB_STEP_SUMMARY
-        working-directory: "./widgetmaker.Web"
+            "### message 3" >> results.md
         shell: pwsh
+        
+      - name: set the summary
+        run: cat results.md >> $GITHUB_STEP_SUMMARY
+        shell: bash
