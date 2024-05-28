@@ -90,14 +90,19 @@ jobs:
         run: |
           $result = Invoke-RestMethod -uri "https://widgetmaker-dev.azurewebsites.net/api/widget/list"
           if (-not $result.wasSuccessful ) {
-            "### Test request was not successful" >> $GITHUB_STEP_SUMMARY  
+            "### Test request was not successful" >> results.md  
             exit 1; 
           }
-          if ($result.list.count > 0 {
-            "### $($result.list.count) widgets in database" >> $GITHUB_STEP_SUMMARY
+          if ($result.list.count > 0) {
+            "### $($result.list.count) widgets in database" >> results.md 
           }
           else {
-            "### Not enough widgets in database" >> $GITHUB_STEP_SUMMARY
+            "### Not enough widgets in database" >> results.md 
             exit 1;
           }
         shell: pwsh
+
+      - name: set the summary
+        run: cat results.md >> $GITHUB_STEP_SUMMARY
+        if: always()
+        shell: bash
