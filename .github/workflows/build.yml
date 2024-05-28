@@ -6,7 +6,7 @@ on:
   pull_request:
     types: [opened, reopened, edited, synchronize]
   workflow_dispatch:
-    
+
 permissions:
   checks: write
   pull-requests: write
@@ -20,7 +20,26 @@ jobs:
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
+        
+      - name: Set up node with caching
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: ./widgetmaker.Web/package-lock.json
 
+      - name: Restore and Install npm Packages
+        run: |
+          rm package-lock.json
+          npm i
+        working-directory: "./widgetmaker.Web"
+        shell: pwsh
+
+      - name: Run npm Build
+        run: npm run build
+        working-directory: "./widgetmaker.Web"
+        shell: pwsh
+        
       - name: Run .NET Tests
         run: dotnet test --logger trx
 
