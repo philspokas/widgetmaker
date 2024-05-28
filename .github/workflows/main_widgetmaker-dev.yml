@@ -91,7 +91,10 @@ jobs:
             echo "### Test request was not successful" >> $GITHUB_STEP_SUMMARY
             return 1; 
           }
-          if (-not $result.list.count > 0) {
+          if ($result.list.count > 0) {
+            echo "### $($result.list.count) widgets in database" >> $GITHUB_STEP_SUMMARY
+          }
+          else {
             echo "### Not enough widgets in database" >> $GITHUB_STEP_SUMMARY
             return 1;
           }
