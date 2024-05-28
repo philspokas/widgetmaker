@@ -15,6 +15,7 @@
             lets make some widgets
             <h2 class="py-2">Make Widgets</h2>
             <p>widget</p>
+            <p>quantity</p>
           </v-form>
         </v-card-text>
       </v-card>
