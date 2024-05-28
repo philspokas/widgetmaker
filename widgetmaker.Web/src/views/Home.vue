@@ -14,7 +14,7 @@
           <v-form ref="form">
             lets make some widgets
             <h2 class="py-2">
-              Make Widgets <c-display :model="widgetMaker" for="widgetId" />
+              Make Widgets
             </h2>
           </v-form>
         </v-card-text>
