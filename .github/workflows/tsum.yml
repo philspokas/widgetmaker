@@ -1,0 +1,15 @@
+name: test summary
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Restore and Install npm Packages
+        run: |
+            $env:GITHUB_STEP_SUMMARY = "### message 1"
+            "### message 2" >> $GITHUB_STEP_SUMMARY
+        working-directory: "./widgetmaker.Web"
+        shell: pwsh
