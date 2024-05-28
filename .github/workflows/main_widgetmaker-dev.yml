@@ -94,7 +94,7 @@ jobs:
             exit 1; 
           }
           "### $($result.list.count) widgets in database" >> results.md 
-          if ($result.list.count > 0) {
+          if ($result.list.count -ge 0) {
             "### $($result.list.count) widgets in database" >> results.md 
           }
           else {
